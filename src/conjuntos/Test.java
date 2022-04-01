@@ -9,7 +9,7 @@ public class Test {
 
         int[] arrayU = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int[] cA = {1, 2, 3, 4, 5};
-        int[] cB = {3, 4, 5, 6, 7};
+        int[] cB = {3, 4, 5, 6, 7, 8};
         int[] cC = {7, 8, 9};
 
         /*Operaciones binarias **/

@@ -4,15 +4,16 @@ public class Operaciones {
 
 
     /**
-     * Método que realiza la operation UNION entre dos conjuntos dados.
+     * Método que retorna la UNION entre dos conjuntos dados.
+     *
      * @param a
      * @param b
      * @return
      */
     public static int[] obtenerUnion(int[] a, int[] b) {
 
-        int[] union =  new int [calcularTamanioUnion(a, b)];
-        int posCont =0;
+        int[] union = new int[calcularTamanioUnion(a, b)];
+        int posCont = 0;
 
         for (int i = 0; i < a.length; i++) {
             union[i] = a[i];
@@ -23,9 +24,9 @@ public class Operaciones {
 
             boolean hayRep = false;
 
-            for (int j = 0; j <union.length && !hayRep ; j++) {
+            for (int j = 0; j < union.length && !hayRep; j++) {
 
-                if (b[i]==union[j]){
+                if (b[i] == union[j]) {
                     hayRep = true;
                 }
             }
@@ -38,29 +39,70 @@ public class Operaciones {
         return union;
     }
 
+    /**
+     * Método que retorna el conjunto intersección entre dos conjuntos dados.
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int[] obtenerInterseccion(int[] a, int[] b) {
 
-    public static int[] obtenerInterseccion (int[] a, int[] b){
-
-        int[] interseccion = new int[calcularRepeticiones(a,b)];
+        int[] interseccion = new int[calcularRepeticiones(a, b)];
+        int posCounter = 0;
 
         for (int i = 0; i < a.length; i++) {
 
             boolean repeticion = false;
 
-            for (int j = 0; j < b.length; j++) {
+            for (int j = 0; j < b.length && !repeticion; j++) {
 
+                if (a[i] == b[j]) {
+                    interseccion[posCounter] = a[i];
+                    posCounter++;
+                }
             }
-
         }
-
-
         return interseccion;
     }
 
+    /**
+     * Método que retorna el conjunto diferencia simétrica entre dos conjuntos dados.
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int[] obtenerDifSimetrica(int[] a, int[] b) {
+
+        int[] difSimetrica = new int[calcularTamanioDifSimetrica(a, b)];
+        int pos = 0;
+
+        int[] union = obtenerUnion(a, b);
+        int[] interseccion = obtenerInterseccion(a, b);
+
+        for (int i = 0; i < union.length; i++) {
+
+            boolean repeticion = false;
+
+            for (int j = 0; j < interseccion.length; j++) {
+
+                if (union[i] == interseccion[j]) {
+                    repeticion = true;
+                }
+            }
+
+            if (!repeticion) {
+                difSimetrica[pos] = union[i];
+                pos++;
+            }
+        }
+        return difSimetrica;
+    }
 
 
     /**
      * Calcula la cantidad de elementos que hay repetidos entre dos conjuntos @a y @b.
+     *
      * @param a
      * @param b
      * @return
@@ -81,6 +123,7 @@ public class Operaciones {
 
     /**
      * Método que calcula el cardinal del conjunto que resulte de unir un conjunto @a y un conjunto @b.
+     *
      * @param a
      * @param b
      * @return
@@ -93,6 +136,7 @@ public class Operaciones {
 
     /**
      * Método que calcula el cardinal del conjunto resultante de la union simétrica de dos conjuntos @a y @b.
+     *
      * @param a
      * @param b
      * @return

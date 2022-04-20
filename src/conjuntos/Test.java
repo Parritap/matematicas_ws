@@ -41,5 +41,12 @@ public class Test {
         //G
         int [] difSimetricaAC = Operaciones.obtenerDifSimetrica(cA, cC);
         System.out.println("g) " +Arrays.toString(difSimetricaAC));
+
+
+
+        /** COMPLEMENTO RELATIVO**/
+
+        int [] complementoRelativoA = Operaciones.obtenerComplementoRelativo(arrayU, cA);
+        System.out.println("El complemento Relativo de U respecto a A es" + Arrays.toString(complementoRelativoA));
     }
 }

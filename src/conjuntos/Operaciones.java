@@ -68,6 +68,7 @@ public class Operaciones {
 
     /**
      * Método que retorna el conjunto diferencia simétrica entre dos conjuntos dados.
+     *
      * @param a
      * @param b
      * @return
@@ -147,4 +148,49 @@ public class Operaciones {
 
         return tamanio;
     }
+
+
+    public static int calcularTamnioComplementoRelativo(int[] a, int[] b) {
+
+        int rep = calcularRepeticiones(a, b);
+
+        int tamanio = a.length - rep;
+        return tamanio;
+    }
+
+
+    public static int[] obtenerComplementoRelativo(int[] a, int[] b) {
+        int[] comRelativ = new int[calcularTamnioComplementoRelativo(a, b)];
+        int pos = 0;
+        for (int i = 0; i < a.length; i++) {
+
+            boolean hayRep = false;
+
+            for (int j = 0; j < b.length && !hayRep; j++) {
+
+                if (a[i] == b[j])
+                    hayRep = true;
+            }
+
+            if (!hayRep) {
+                comRelativ[pos] = a[i];
+                pos++;
+            }
+
+        }
+        return comRelativ;
+    }
+
+    /**
+     * Método que obtiene el complement de un conjunto.
+     *
+     * @param universo
+     * @param a
+     * @return
+     */
+    public static int[] obtenerComplemento(int[] universo, int[] a) {
+        return obtenerComplementoRelativo(universo, a);
+    }
+
+
 }

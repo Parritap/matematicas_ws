@@ -1,8 +1,31 @@
 package utilidades;
 
-import java.util.ArrayList;
+import seguimiento.Funcion;
+
+import java.util.*;
 
 public class Utils {
+
+    public static void main(String[] args) {
+
+        String str = "1,5 2,6 3,7";
+        String d= "1,2,3";
+        String c = "5,6,7";
+
+        int [] dom = stringToIntArray(d);
+        int [] cod = stringToIntArray(c);
+        int [][] func = dividirMatrizPorEsp(str);
+
+        for (int [] array: func) {
+            System.out.println(Arrays.toString(array));
+        }
+
+        String tipoFuncion = Funcion.informarTipoFuncion(func, dom, cod);
+
+
+
+
+    }
 
     /**
      * Método que corta un String cuando encuentre una coma, y mete todos los elementos
@@ -24,7 +47,7 @@ public class Utils {
      * @param str String que se divide por las comas y cuyos elementos se convierte en números.
      * @return Arreglo de numeros.
      */
-    public static int[] StringToIntArray(String str) {
+    public static int[] stringToIntArray(String str) {
 
         String[] strArray = dividirPorComas(str);
         int[] intArray = new int[strArray.length];
@@ -36,6 +59,19 @@ public class Utils {
         return intArray;
     }
 
+    public static int [][] dividirMatrizPorEsp (String str){
+
+        String[] strArray = str.split(" ");
+        int[][] matrix = new int[strArray.length][];
+
+        for (int i = 0; i < matrix.length; i++) {
+
+            matrix[i] = stringToIntArray(strArray[i]);
+        }
+
+        return matrix;
+    }
+
     public static int[] toIntArray(ArrayList<Integer> list) {
 
         int[] array = new int[list.size()];
@@ -44,6 +80,16 @@ public class Utils {
             array[i] = list.get(i);
         }
         return array;
+    }
+
+    public static int [ ]removerDuplicados(int[] array){
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int element : array) {
+            if (!list.contains(element))
+                list.add(element);
+        }
+        return toIntArray(list);
     }
 
 }

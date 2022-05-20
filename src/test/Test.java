@@ -18,8 +18,10 @@ public class Test {
                {3,5}
        };
 
+       boolean isFunc = Funcion.esFuncion(func, dom);
+
        boolean b = Funcion.esSobreyectivaXY(func, dom, rang);
-        System.out.println(b);
+        System.out.println(isFunc);
 
     }
 }
